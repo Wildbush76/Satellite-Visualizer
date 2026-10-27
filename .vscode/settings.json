@@ -67,5 +67,12 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Satellite Visualizer.slnx"
+    "dotnet.defaultSolution": "Satellite Visualizer.slnx",
+    "cSpell.words": [
+        "Behaviour",
+        "freeicons"
+    ],
+    "editor.codeActionsOnSave": [
+        "source.organizeImports"
+    ]
 }
