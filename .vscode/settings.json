@@ -67,11 +67,13 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Satellite-Visualizer.slnx",
+    "dotnet.defaultSolution": "Satellite Visualizer.slnx",
     "cSpell.words": [
         "Behaviour",
+        "Celestrak",
         "Dont",
-        "freeicons"
+        "freeicons",
+        "Mathf"
     ],
     "editor.codeActionsOnSave": [
         "source.organizeImports"

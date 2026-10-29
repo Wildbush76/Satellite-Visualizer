@@ -9,7 +9,9 @@ namespace Assets.Scripts
         public static World Instance { get; private set; }
 
         [NonSerialized]
-        public Coordinate viewerLocation = new Coordinate(0, 0, 0);
+        public Coordinate viewerLocation = new Coordinate(-47.81, -175.44);
+
+        public EpochTime Now { get; private set; } = new EpochTime(DateTime.Now);
 
         private void Awake()
         {
@@ -22,6 +24,12 @@ namespace Assets.Scripts
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+
+        private void Update()
+        {
+
         }
     }
 }
