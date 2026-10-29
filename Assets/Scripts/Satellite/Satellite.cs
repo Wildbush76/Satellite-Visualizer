@@ -1,32 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using One_Sgp4;
 namespace Assets.Scripts.Satellite
 {
 
     public class Satellite : MonoBehaviour
     {
 
-
         public static readonly List<Satellite> satellites = new();
         public readonly OrbitInformation orbitInformation;
 
 
 
-        void Start()
+        private void Start()
         {
             satellites.Add(this);
 
 
 
         }
-        void OnDestroy()
+        private void OnDestroy()
         {
             satellites.Remove(this);
         }
 
 
-        void Update()
+        private void Update()
         {
 
         }
