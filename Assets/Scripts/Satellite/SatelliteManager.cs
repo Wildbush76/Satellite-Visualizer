@@ -16,8 +16,6 @@ namespace Assets.Scripts.Satellite
         [SerializeField]
         private GameObject satellitePrefab;
 
-        [SerializeField]
-        private int maxUpdatesPerFrame = 100;//prevent lag from updating tons each frame
 
         private void Awake()
         {
@@ -51,26 +49,23 @@ namespace Assets.Scripts.Satellite
         {
             //TESTING
             string path = Path.Combine(Application.streamingAssetsPath, "gp.txt");
-            Tle tle = ParserTLE.ParseFile(path)[0];
-            Debug.Log("NAME " + tle.getName());
-
-            CreateSatellite(tle);
+            foreach (Tle tle in ParserTLE.ParseFile(path))
+            {
+                CreateSatellite(tle);
+            }
             //TESTING
         }
 
         void Update()
         {
             World world = World.Instance;
-            int updates = 0;
 
             foreach (var satellite in Satellite.satellites.Values)
             {
                 if (satellite.NeedsUpdate)
                 {
                     satellite.UpdatePosition(world.Now, world.viewerLocation);
-                    updates++;
-                    if (updates > maxUpdatesPerFrame)
-                        break;
+
                 }
             }
         }
