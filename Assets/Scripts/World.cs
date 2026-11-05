@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
+using System.Runtime.InteropServices;
 using One_Sgp4;
 using UnityEngine;
+using UnityEngine.Android;
 
 namespace Assets.Scripts
 {
@@ -31,5 +34,26 @@ namespace Assets.Scripts
         {
 
         }
+
+        private void InitGPS()
+        {
+
+#if MOBILE
+            if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+            {
+                PermissionCallbacks callback = new();
+                callback.PermissionGranted += PermissionGrantedCallback;
+
+                Permission.RequestUserPermission(Permission.FineLocation);
+            }
+
+#endif
+        }
+
+        private void PermissionGrantedCallback(string permission)
+        {
+
+        }
+
     }
 }
