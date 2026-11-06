@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using One_Sgp4;
@@ -9,12 +10,13 @@ namespace Assets.Scripts.Satellite
 
     public class SatelliteManager : MonoBehaviour
     {
-        private const String CelestrakURL = "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?SOURCE={0}[&FORMAT=JSON]";
-
         public SatelliteManager Instance { get; private set; }
 
+
         [SerializeField]
-        private GameObject satellitePrefab;
+        private GameObject satelliteGroupPrefab;
+
+        private readonly Dictionary<SatelliteType, SatelliteGroup> satelliteGroups = new();
 
 
         private void Awake()
@@ -30,44 +32,22 @@ namespace Assets.Scripts.Satellite
             DontDestroyOnLoad(gameObject);
         }
 
-
-        private void CreateSatellite(Tle tle)
+        private void CreateGroup(string tlePath, SatelliteType type)
         {
-            var newSatelliteObj = Instantiate(satellitePrefab, transform);
-            var newSatellite = newSatelliteObj.GetComponent<Satellite>();
+            var obj = GameObject.Instantiate(satelliteGroupPrefab, transform);
+            SatelliteGroup group = obj.GetComponent<SatelliteGroup>();
+            group.Initialize(tlePath, type);
 
-            newSatellite.Initialize(tle);
-
+            if (!satelliteGroups.TryAdd(type, group))
+            {
+                Debug.LogWarning(string.Format("A satellite group with the type %s already exists!", type.ToString()), obj);
+            }
         }
-
-        private void LoadTLE()
-        {
-
-        }
-
         void Start()
         {
             //TESTING
-            string path = Path.Combine(Application.streamingAssetsPath, "gp.txt");
-            foreach (Tle tle in ParserTLE.ParseFile(path))
-            {
-                CreateSatellite(tle);
-            }
+            CreateGroup(Path.Combine(Application.streamingAssetsPath, "gp.txt"), SatelliteType.GNSS);
             //TESTING
-        }
-
-        void Update()
-        {
-            World world = World.Instance;
-
-            foreach (var satellite in Satellite.satellites.Values)
-            {
-                if (satellite.NeedsUpdate)
-                {
-                    satellite.UpdatePosition(world.Now, world.viewerLocation);
-
-                }
-            }
         }
 
 

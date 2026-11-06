@@ -5,25 +5,44 @@ using System;
 using Unity.XR.CoreUtils;
 namespace Assets.Scripts.Satellite
 {
-
+    [RequireComponent(typeof(SpriteRenderer))]
     public class Satellite : MonoBehaviour
     {
-        private const float orbitRange = 5;//unity units - This is how far they will actually be
+        private const float orbitRange = 10;//unity units - This is how far they will actually be
         public static readonly Dictionary<int, Satellite> satellites = new();
+        private Transform focus;//the point all the satellites look at
+        private SpriteRenderer sprite;
+        private SatelliteType type = SatelliteType.UNKNOWN;
 
-        public bool NeedsUpdate { get; private set; }
         public int SatNumber
         {
             get => tle.getSatNumber();
         }
         private Tle tle;
 
-        public void Initialize(Tle tle)
+        public void Initialize(Tle tle, SatelliteType type)
         {
             this.tle = tle;
+            this.type = type;
             satellites.Add(SatNumber, this);
-            NeedsUpdate = true;
         }
+
+        void Start()
+        {
+            focus = transform.parent;
+            sprite = GetComponent<SpriteRenderer>();
+            sprite.color = GetSatelliteColor(type);
+        }
+
+        private static Color GetSatelliteColor(SatelliteType type)
+        {
+            return type switch
+            {
+                SatelliteType.GNSS => Color.blue,
+                _ => Color.gray,
+            };
+        }
+
 
         public void UpdatePosition(EpochTime now, Coordinate observer)
         {
@@ -33,28 +52,20 @@ namespace Assets.Scripts.Satellite
             float azimuth = (float)location.y;
             float elevation = (float)location.z;
 
-            Debug.Log("Azimuth : " + azimuth + " elevation : " + elevation);
-
             float x = orbitRange * Mathf.Cos(elevation) * Mathf.Sin(azimuth);
             float y = orbitRange * Mathf.Sin(elevation);
             float z = orbitRange * Mathf.Cos(elevation) * Mathf.Cos(azimuth);
 
             transform.localPosition = new Vector3(x, y, z);
-            NeedsUpdate = false;
 
-            //TODO add calculation for when the next position update should be
+            var to = focus.position - transform.position;
+            transform.rotation = Quaternion.LookRotation(to, Vector3.up);
         }
 
         private void OnDestroy()
         {
             if (tle is not null)
                 satellites.Remove(SatNumber);
-        }
-
-
-        private void Update()
-        {
-
         }
     }
 }
