@@ -1282,8 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f18f39a19203549a948028e9f1a25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Satellite.SatelliteManager
-  satellitePrefab: {fileID: 2181674829388111850, guid: efd4ccc47f5cccf5b9260657853f846b, type: 3}
-  maxUpdatesPerFrame: 100
+  satelliteGroupPrefab: {fileID: 468448716361361490, guid: 8d2e866577a96cd45affc389c7ae67b1, type: 3}
 --- !u!4 &1928584833
 Transform:
   m_ObjectHideFlags: 0
