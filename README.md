@@ -27,7 +27,7 @@
 
 
 ## Sources
-* Satellite Icon - Icon by Read on [freeicons.io](ttps://freeicons.io/profile/1)
+* Satellite Icon - Icon by Read on [freeicons.io](https://freeicons.io/profile/1)
 * SGP4 Calculator - [one_sgp4](https://github.com/1manprojects/one_Sgp4)
 
 ## Author
