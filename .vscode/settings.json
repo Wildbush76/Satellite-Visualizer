@@ -67,13 +67,19 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Satellite-Visualizer.slnx",
+    "dotnet.defaultSolution": "Satellite Visualizer.slnx",
     "cSpell.words": [
         "Behaviour",
+        "BEIDOU",
+        "CATNR",
         "Celestrak",
         "Dont",
         "freeicons",
-        "Mathf"
+        "GLONASS",
+        "INTDES",
+        "Mathf",
+        "SBAS",
+        "STARLINK"
     ],
     "editor.codeActionsOnSave": [
         "source.organizeImports"
