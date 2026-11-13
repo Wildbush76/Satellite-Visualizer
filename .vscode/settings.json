@@ -71,17 +71,25 @@
     "cSpell.words": [
         "Behaviour",
         "BEIDOU",
+        "BSTAR",
         "CATNR",
         "Celestrak",
+        "DDOT",
         "Dont",
         "freeicons",
         "GLONASS",
         "INTDES",
         "Mathf",
+        "PERICENTER",
         "SBAS",
         "STARLINK"
     ],
     "editor.codeActionsOnSave": [
         "source.organizeImports"
-    ]
+    ],
+    "[csharp]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    }
 }

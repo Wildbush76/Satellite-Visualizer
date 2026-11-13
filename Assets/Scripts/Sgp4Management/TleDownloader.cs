@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Assets.Scripts.Tle
+namespace Assets.Scripts.Sgp4Management
 {
     public class TleLoader
     {

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using One_Sgp4;
@@ -31,6 +29,7 @@ namespace Assets.Scripts.Satellite
         {
             try
             {
+
                 foreach (Tle tle in ParserTLE.ParseFile(tlePath))
                 {
                     CreateSatellite(tle);

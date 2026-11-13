@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Tle
+namespace Assets.Scripts.Sgp4Management
 {
     public enum CelestrakQueries
     {
