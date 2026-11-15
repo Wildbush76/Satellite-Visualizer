@@ -36,7 +36,7 @@ namespace Assets.Scripts.Satellite
         {
             var obj = GameObject.Instantiate(satelliteGroupPrefab, transform);
             SatelliteGroup group = obj.GetComponent<SatelliteGroup>();
-            group.Initialize(tlePath, type);
+            group.Initialize(tlePath);
 
             if (!satelliteGroups.TryAdd(type, group))
             {
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Satellite
         void Start()
         {
             //TESTING
-            CreateGroup(Path.Combine(Application.streamingAssetsPath, "gp.txt"), SatelliteType.GNSS);
+            CreateGroup(Path.Combine(Application.streamingAssetsPath, "galileo.xml"), SatelliteType.GNSS);
             //TESTING
         }
 

@@ -3,50 +3,41 @@ using UnityEngine;
 using One_Sgp4;
 using System;
 using Unity.XR.CoreUtils;
+using Assets.Scripts.Sgp4Management;
+using One_Sgp4.omm;
 namespace Assets.Scripts.Satellite
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class Satellite : MonoBehaviour
     {
         private const float orbitRange = 10;//unity units - This is how far they will actually be
-        public static readonly Dictionary<int, Satellite> satellites = new();
+
         private Transform focus;//the point all the satellites look at
         private SpriteRenderer sprite;
-        private SatelliteType type = SatelliteType.UNKNOWN;
+        private Sgp4 propagator;
 
-        public int SatNumber
-        {
-            get => tle.getSatNumber();
-        }
-        private Tle tle;
+        private Omm omm;
 
-        public void Initialize(Tle tle, SatelliteType type)
+
+        public void Initialize(Omm omm)
         {
-            this.tle = tle;
-            this.type = type;
-            satellites.Add(SatNumber, this);
+            this.omm = omm;
+            propagator = new(omm, Sgp4.wgsConstant.WGS_84);
         }
 
         void Start()
         {
             focus = transform.parent;
             sprite = GetComponent<SpriteRenderer>();
-            sprite.color = GetSatelliteColor(type);
-        }
-
-        private static Color GetSatelliteColor(SatelliteType type)
-        {
-            return type switch
-            {
-                SatelliteType.GNSS => Color.blue,
-                _ => Color.gray,
-            };
+            sprite.color = Color.gray;//TODO implement color
         }
 
 
         public void UpdatePosition(EpochTime now, Coordinate observer)
         {
-            Sgp4Data data = SatFunctions.getSatPositionAtTime(tle, now, Sgp4.wgsConstant.WGS_84);
+            propagator.runSgp4Cal(now, now, 1.0 / 60.0);
+            Sgp4Data data = propagator.getResults()[0];
+            propagator.clear();
             Point3d location = SatFunctions.calcSphericalCoordinate(observer, now, data);
 
             float azimuth = (float)location.y;
@@ -62,10 +53,6 @@ namespace Assets.Scripts.Satellite
             transform.rotation = Quaternion.LookRotation(to, Vector3.up);
         }
 
-        private void OnDestroy()
-        {
-            if (tle is not null)
-                satellites.Remove(SatNumber);
-        }
+
     }
 }

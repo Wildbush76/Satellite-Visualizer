@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
+using Assets.Scripts.Sgp4Management;
 using One_Sgp4;
+using One_Sgp4.omm;
 using UnityEngine;
 
 namespace Assets.Scripts.Satellite
@@ -12,7 +15,6 @@ namespace Assets.Scripts.Satellite
         [SerializeField]
         private GameObject satellitePrefab;
         private World world;
-        private SatelliteType type;
 
         public bool Active
         {
@@ -25,29 +27,24 @@ namespace Assets.Scripts.Satellite
 
         private bool active;
 
-        public void Initialize(string tlePath, SatelliteType type)
+        public void Initialize(string ommPath)
         {
-            try
-            {
+            XmlDocument ommDoc = new();
+            ommDoc.Load(ommPath);
+            List<Omm> ommList = ParserOMM.Parse(ommDoc);
 
-                foreach (Tle tle in ParserTLE.ParseFile(tlePath))
-                {
-                    CreateSatellite(tle);
-                }
-                this.type = type;
-            }
-            catch (FileNotFoundException)
+            foreach (Omm omm in ommList)
             {
-                Debug.LogError("Failed to load TLE file at " + type, gameObject);
+                CreateSatellite(omm);
             }
         }
 
-        private void CreateSatellite(Tle tle)
+        private void CreateSatellite(Omm omm)
         {
             var newSatelliteObj = Instantiate(satellitePrefab, transform);
             var newSatellite = newSatelliteObj.GetComponent<Satellite>();
 
-            newSatellite.Initialize(tle, type);
+            newSatellite.Initialize(omm);
             satellites.Add(newSatellite);
         }
 

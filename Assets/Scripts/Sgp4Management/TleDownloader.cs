@@ -7,7 +7,7 @@ namespace Assets.Scripts.Sgp4Management
     public class TleLoader
     {
         private const string CELESTRAK_URL = "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?{0}={1}&FORMAT={2}";
-        private const string JSON_FORMAT = "json";
+        private const string XML_FORMAT = "xml";
 
 
         public static string GetCelestrakUrl(string query, string value, string format)
@@ -17,7 +17,7 @@ namespace Assets.Scripts.Sgp4Management
 
         public static async Awaitable<bool> GetJsonTLEGroup(string group, string path)
         {
-            string url = GetCelestrakUrl(CelestrakQueries.GROUP.ToString(), group, JSON_FORMAT);
+            string url = GetCelestrakUrl(CelestrakQueries.GROUP.ToString(), group, XML_FORMAT);
             return await Download(url, path);
         }
         public static async Awaitable<bool> Download(String url, String targetPath)
