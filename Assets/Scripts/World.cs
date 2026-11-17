@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
-using One_Sgp4;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -11,10 +10,8 @@ namespace Assets.Scripts
     {
         public static World Instance { get; private set; }
 
-        [NonSerialized]
-        public Coordinate viewerLocation = new Coordinate(32.99189751954053, -96.75764567626766);
 
-        public EpochTime Now { get; private set; } = new EpochTime(DateTime.Now);
+
 
         private void Awake()
         {
