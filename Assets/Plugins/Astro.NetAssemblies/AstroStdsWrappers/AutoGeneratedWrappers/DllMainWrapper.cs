@@ -8,11 +8,11 @@ namespace AFSPC.AstroStds.Wrappers
    public static partial class DllMainWrapper
    {
       // Provide the path to the dll
-      #if WINDOWS
+#if WINDOWS
       const string DllMainDll = "dllmain";
-      #else
+#else
       const string DllMainDll = "libdllmain.so";
-      #endif
+#endif
       // static constructor
       static DllMainWrapper()
       {
@@ -275,96 +275,96 @@ namespace AFSPC.AstroStds.Wrappers
       /// <returns>Error message mode: 0= use GetLastErrMsg(), 1= use GetErrMsg() to retrieve appropriate error message</returns>
       [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
       public static extern int GetErrMsgMode();
-      
+
       // log message string length
-      public static int LOGMSGLEN = 128;   
-      
+      public static int LOGMSGLEN = 128;
+
       // DHN 06Feb12 - Increase file path length to 512 characters from 128 characters to handle longer file path
       public static int FILEPATHLEN = 512;
-      
+
       // DHN 10Feb12 - Uniformally using 512 characters to passing/receiving string in all Get/Set Field functions
       public static int GETSETSTRLEN = 512;
-      
+
       public static int INFOSTRLEN = 128;
-      
+
       // DHN 10Feb12 - All input card types' (elsets, ob, sensors, ...) can now have maximum of 512 characters
       public static int INPUTCARDLEN = 512;
-      
+
       // Different orbital element types 
-      public static int  
-         ELTTYPE_TLE_SGP   = 1,    // Element type - SGP Tle type 0
-         ELTTYPE_TLE_SGP4  = 2,    // Element type - SGP4 Tle type 2
-         ELTTYPE_TLE_SP    = 3,    // Element type - SP Tle type 6
+      public static int
+         ELTTYPE_TLE_SGP = 1,    // Element type - SGP Tle type 0
+         ELTTYPE_TLE_SGP4 = 2,    // Element type - SGP4 Tle type 2
+         ELTTYPE_TLE_SP = 3,    // Element type - SP Tle type 6
          ELTTYPE_SPVEC_B1P = 4,    // Element type - SP Vector
-         ELTTYPE_VCM       = 5,    // Element type - VCM
-         ELTTYPE_EXTEPH    = 6,    // Element type - External ephemeris
-         ELTTYPE_TLE_XP    = 7,    // Element type - SGP Tle type 4 - XP
-         ELTTYPE_TLE_PPT3  = 8;    // Element type - PPT3 Tle type 3 - XP
-      
+         ELTTYPE_VCM = 5,    // Element type - VCM
+         ELTTYPE_EXTEPH = 6,    // Element type - External ephemeris
+         ELTTYPE_TLE_XP = 7,    // Element type - SGP Tle type 4 - XP
+         ELTTYPE_TLE_PPT3 = 8;    // Element type - PPT3 Tle type 3 - XP
+
       //*******************************************************************************
-      
+
       // Propagation types
-      public static int  
-         PROPTYPE_GP  = 1,       // GP/SGP4/SGP4-XP propagator
-         PROPTYPE_SP  = 2,       // SP propagator
-         PROPTYPE_X   = 3,       // External ephemeris
-         PROPTYPE_UK  = 4;       // Unknown
-      //*******************************************************************************
-      
+      public static int
+         PROPTYPE_GP = 1,       // GP/SGP4/SGP4-XP propagator
+         PROPTYPE_SP = 2,       // SP propagator
+         PROPTYPE_X = 3,       // External ephemeris
+         PROPTYPE_UK = 4;       // Unknown
+                                //*******************************************************************************
+
       // Add sat error 
-      public static int  
+      public static int
          BADSATKEY = -1,      // Bad satellite key
          BADSATNUM = -1,      // Bad satellite number
-         DUPSATKEY =  0;      // Duplicate satellite key
-      
+         DUPSATKEY = 0;      // Duplicate satellite key
+
       //*******************************************************************************
-      
+
       // satellite/observation/sensor key possible errors
-      public static int  
+      public static int
          BADKEY = -1,      // Bad (satellite/observation/sensor) key
-         DUPKEY =  0;      // Duplicate (satellite/observation/sensor) key
-      
+         DUPKEY = 0;      // Duplicate (satellite/observation/sensor) key
+
       //*******************************************************************************
-      
+
       // Options used in GetLoaded()   
-      public static int  
-         IDX_ORDER_ASC   = 0,    // ascending order
-         IDX_ORDER_DES   = 1,    // descending order
-         IDX_ORDER_READ  = 2,    // order as read
+      public static int
+         IDX_ORDER_ASC = 0,    // ascending order
+         IDX_ORDER_DES = 1,    // descending order
+         IDX_ORDER_READ = 2,    // order as read
          IDX_ORDER_QUICK = 9;    // tree traversal order
-      
+
       //*******************************************************************************
-      
+
       // Different key mode options for all elset-satKey/obs-obsKey/sensor-senKey
-      public static int  
-         ALL_KEYMODE_NODUP  = 0,    // Default - duplicate elsets/observations/sensors can not be loaded in their binary trees                           
-         ALL_KEYMODE_DMA    = 1;    // Allow duplicate elsets/obs/sensor to be loaded and have direct memory access (DMA - no duplication check and no binary tree)
-         
+      public static int
+         ALL_KEYMODE_NODUP = 0,    // Default - duplicate elsets/observations/sensors can not be loaded in their binary trees                           
+         ALL_KEYMODE_DMA = 1;    // Allow duplicate elsets/obs/sensor to be loaded and have direct memory access (DMA - no duplication check and no binary tree)
+
       //*******************************************************************************
-      
-         
+
+
       // Different key mode options for elset satKey
-      public static int  
-         ELSET_KEYMODE_NODUP  = 0,    // Default - duplicate elsets can not be loaded in binary tree                           
-         ELSET_KEYMODE_DMA    = 1;    // Allow duplicate elsets to be loaded and have direct memory access (DMA - no duplication check and no binary tree)
-         
+      public static int
+         ELSET_KEYMODE_NODUP = 0,    // Default - duplicate elsets can not be loaded in binary tree                           
+         ELSET_KEYMODE_DMA = 1;    // Allow duplicate elsets to be loaded and have direct memory access (DMA - no duplication check and no binary tree)
+
       //*******************************************************************************
-         
+
       // Different duplication key mode options (apply to non DMA mode only)
-      public static int  
-         DUPKEY_ZERO   = 0,    // Returning (satellite/sensor/obs) key is zero to signify the existing data/key was already in memory
+      public static int
+         DUPKEY_ZERO = 0,    // Returning (satellite/sensor/obs) key is zero to signify the existing data/key was already in memory
          DUPKEY_ACTUAL = 1;    // Return actual (satellite/sensor/obs) key regardless of the key/data duplication
-         
+
       //*******************************************************************************
-      
-         
-      public static int  
+
+
+      public static int
          TIME_IS_MSE = 1,     // Input time is in minutes since epoch 
          TIME_IS_TAI = 2,     // Input time is in days since 1950 TAI
          TIME_IS_UTC = 3;     // Input time is in days since 1950 UTC
-         
+
       //*******************************************************************************   
-         
+
    }
-// ========================= End of auto generated code ==========================
+   // ========================= End of auto generated code ==========================
 }

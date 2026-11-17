@@ -8,16 +8,16 @@ namespace AFSPC.AstroStds.Wrappers
    public static partial class TleWrapper
    {
       // Provide the path to the dll
-      #if WINDOWS
+#if WINDOWS
       const string TleDll = "tle";
-      #else
+#else
       const string TleDll = "libtle.so";
-      #endif
+#endif
       // static constructor
       static TleWrapper()
       {
          // Set AS library default path/LD_LIBRARY_PATH environment
-         Utilities.Utility.Init();
+         //Utilities.Utility.Init();
       }
 
 
@@ -900,113 +900,113 @@ namespace AFSPC.AstroStds.Wrappers
       /// <returns>Returns: 1= key exists; 0= key doesn't exist</returns>
       [DllImport(TleDll, CallingConvention = CallingConvention.Cdecl)]
       public static extern int TleKeyExists(long satKey);
-      
+
       // TLE types (TLE ephemeris types) - They are different than ELTTYPE
-      public static int  
-         TLETYPE_SGP  = 0,    // TLE SGP elset (Kozai mean motion)
+      public static int
+         TLETYPE_SGP = 0,    // TLE SGP elset (Kozai mean motion)
          TLETYPE_SGP4 = 2,    // TLE SGP4 elset (Brouwer mean motion)
          TLETYPE_PPT3 = 3,    // TLE PPT3 elset (Kozai mean motion)
-         TLETYPE_XP   = 4,    // TLE SGP4-XP elset (Brouwer mean motion)
-         TLETYPE_SP   = 6;    // TLE SP elset (osculating elements)
-      
+         TLETYPE_XP = 4,    // TLE SGP4-XP elset (Brouwer mean motion)
+         TLETYPE_SP = 6;    // TLE SP elset (osculating elements)
+
       // Indexes of TLE data fields
-      public static int  
-         XF_TLE_SATNUM     =  1,    // Satellite number
-         XF_TLE_CLASS      =  2,    // Security classification U: unclass, C: confidential, S: Secret
-         XF_TLE_SATNAME    =  3,    // Satellite name A8
-         XF_TLE_EPOCH      =  4,    // Satellite's epoch time "YYYYJJJ.jjjjjjjj"
-         XF_TLE_BSTAR      =  5,    // GP B* drag term (1/er)  (not the same as XF_TLE_BTERM) 
-         XF_TLE_EPHTYPE    =  6,    // Satellite ephemeris type: 0=SGP, 2=SGP4, 4=SGP4-XP, 6=SP
-         XF_TLE_ELSETNUM   =  7,    // Element set number
-         XF_TLE_INCLI      =  8,    // Orbit inclination (deg)
-         XF_TLE_NODE       =  9,    // Right ascension of asending node (deg)
-         XF_TLE_ECCEN      = 10,    // Eccentricity
-         XF_TLE_OMEGA      = 11,    // Argument of perigee (deg)
-         XF_TLE_MNANOM     = 12,    // Mean anomaly (deg)
-         XF_TLE_MNMOTN     = 13,    // Mean motion (rev/day) (ephType=0: Kozai, ephType=2: Brouwer)
-         XF_TLE_REVNUM     = 14,    // Revolution number at epoch 
-         
-         XF_TLE_NDOT       = 15,    // GP Mean motion derivative (rev/day**2 /2)
-         XF_TLE_NDOTDOT    = 16,    // GP Mean motion second derivative (rev/day**3 /6)
-         XF_TLE_AGOMGP     = 16,    // Solar radiation pressure GP (m2/kg)
-      
-         XF_TLE_SP_AGOM    =  5,    // SP Radiation Pressure Coefficient
-         XF_TLE_SP_BTERM   = 15,    // SP ballistic coefficient (m2/kg)
-         XF_TLE_SP_OGPARM  = 16,    // SP outgassing parameter (km/s2)
-      
-         XF_TLE_ORGSATNUM  = 17,    // Original satellite number
-         XF_TLE_BTERM      = 18,    // GP ballistic coefficient (m2/kg) (not the same as XF_TLE_BSTAR)
-         XF_TLE_OBSTIME    = 19,    // Time of last observation relative to epoch +/- fractional days
-         XF_TLE_EGR        = 20,    // Last calculated error growth rate (km/day)
-         XF_TLE_EDR        = 21,    // Last calculated energy dissipation rate (w/kg)
-         XF_TLE_VISMAG     = 22,    // Median Vismag 
-         XF_TLE_RCS        = 23,    // Median RCS - diameter in centimeters (cm)
-         XF_TLE_OBJTYPE    = 24,    // Object Type (Payload, Rocket Body, Platform, Debris, Unknown)
+      public static int
+         XF_TLE_SATNUM = 1,    // Satellite number
+         XF_TLE_CLASS = 2,    // Security classification U: unclass, C: confidential, S: Secret
+         XF_TLE_SATNAME = 3,    // Satellite name A8
+         XF_TLE_EPOCH = 4,    // Satellite's epoch time "YYYYJJJ.jjjjjjjj"
+         XF_TLE_BSTAR = 5,    // GP B* drag term (1/er)  (not the same as XF_TLE_BTERM) 
+         XF_TLE_EPHTYPE = 6,    // Satellite ephemeris type: 0=SGP, 2=SGP4, 4=SGP4-XP, 6=SP
+         XF_TLE_ELSETNUM = 7,    // Element set number
+         XF_TLE_INCLI = 8,    // Orbit inclination (deg)
+         XF_TLE_NODE = 9,    // Right ascension of asending node (deg)
+         XF_TLE_ECCEN = 10,    // Eccentricity
+         XF_TLE_OMEGA = 11,    // Argument of perigee (deg)
+         XF_TLE_MNANOM = 12,    // Mean anomaly (deg)
+         XF_TLE_MNMOTN = 13,    // Mean motion (rev/day) (ephType=0: Kozai, ephType=2: Brouwer)
+         XF_TLE_REVNUM = 14,    // Revolution number at epoch 
+
+         XF_TLE_NDOT = 15,    // GP Mean motion derivative (rev/day**2 /2)
+         XF_TLE_NDOTDOT = 16,    // GP Mean motion second derivative (rev/day**3 /6)
+         XF_TLE_AGOMGP = 16,    // Solar radiation pressure GP (m2/kg)
+
+         XF_TLE_SP_AGOM = 5,    // SP Radiation Pressure Coefficient
+         XF_TLE_SP_BTERM = 15,    // SP ballistic coefficient (m2/kg)
+         XF_TLE_SP_OGPARM = 16,    // SP outgassing parameter (km/s2)
+
+         XF_TLE_ORGSATNUM = 17,    // Original satellite number
+         XF_TLE_BTERM = 18,    // GP ballistic coefficient (m2/kg) (not the same as XF_TLE_BSTAR)
+         XF_TLE_OBSTIME = 19,    // Time of last observation relative to epoch +/- fractional days
+         XF_TLE_EGR = 20,    // Last calculated error growth rate (km/day)
+         XF_TLE_EDR = 21,    // Last calculated energy dissipation rate (w/kg)
+         XF_TLE_VISMAG = 22,    // Median Vismag 
+         XF_TLE_RCS = 23,    // Median RCS - diameter in centimeters (cm)
+         XF_TLE_OBJTYPE = 24,    // Object Type (Payload, Rocket Body, Platform, Debris, Unknown)
          XF_TLE_SATNAME_12 = 25;    // Satellite name A12 (upto 12 character long)
-         
-         
+
+
       // Indexes of TLE numerical data in an array
-      public static int  
+      public static int
          // Line 1
-         XA_TLE_SATNUM        =  0,    // Satellite number
-         XA_TLE_EPOCH         =  1,    // Satellite's epoch time in DS50UTC
-         XA_TLE_NDOT          =  2,    // GP Mean motion derivative (rev/day**2 /2)
-         XA_TLE_NDOTDOT       =  3,    // GP Mean motion second derivative (rev/day**3 /6)
-         XA_TLE_BSTAR         =  4,    // GP B* drag term (1/er)  
-         XA_TLE_EPHTYPE       =  5,    // Satellite ephemeris type: 0=SGP, 2=SGP4, 4=SGP4-XP, 6=SP
-         
+         XA_TLE_SATNUM = 0,    // Satellite number
+         XA_TLE_EPOCH = 1,    // Satellite's epoch time in DS50UTC
+         XA_TLE_NDOT = 2,    // GP Mean motion derivative (rev/day**2 /2)
+         XA_TLE_NDOTDOT = 3,    // GP Mean motion second derivative (rev/day**3 /6)
+         XA_TLE_BSTAR = 4,    // GP B* drag term (1/er)  
+         XA_TLE_EPHTYPE = 5,    // Satellite ephemeris type: 0=SGP, 2=SGP4, 4=SGP4-XP, 6=SP
+
          // Line 2
-         XA_TLE_INCLI         = 20,    // Orbit inclination (deg)
-         XA_TLE_NODE          = 21,    // Right ascension of asending node (deg)
-         XA_TLE_ECCEN         = 22,    // Eccentricity
-         XA_TLE_OMEGA         = 23,    // Argument of perigee (deg)
-         XA_TLE_MNANOM        = 24,    // Mean anomaly (deg)
-         XA_TLE_MNMOTN        = 25,    // Mean motion (rev/day) (ephType=0, 4: Kozai, ephType=2: Brouwer)
-         XA_TLE_REVNUM        = 26,    // Revolution number at epoch 
-         XA_TLE_ELSETNUM      = 30,    // Element set number
-         
+         XA_TLE_INCLI = 20,    // Orbit inclination (deg)
+         XA_TLE_NODE = 21,    // Right ascension of asending node (deg)
+         XA_TLE_ECCEN = 22,    // Eccentricity
+         XA_TLE_OMEGA = 23,    // Argument of perigee (deg)
+         XA_TLE_MNANOM = 24,    // Mean anomaly (deg)
+         XA_TLE_MNMOTN = 25,    // Mean motion (rev/day) (ephType=0, 4: Kozai, ephType=2: Brouwer)
+         XA_TLE_REVNUM = 26,    // Revolution number at epoch 
+         XA_TLE_ELSETNUM = 30,    // Element set number
+
          // CSV (or TLE-XP, ephemType=4) specific fields 
-         XA_TLE_ORGSATNUM     = 31,    // Original satellite number
-         XA_TLE_BTERM         = 32,    // SP/SGP4-XP ballistic coefficient (m2/kg) 
-         XA_TLE_OBSTIME       = 33,    // Time of last observation relative to epoch +/- fractional days
-         XA_TLE_EGR           = 34,    // Last calculated error growth rate (km/day)
-         XA_TLE_EDR           = 35,    // Last calculated energy dissipation rate (w/kg)
-         XA_TLE_VISMAG        = 36,    // Median Vismag 
-         XA_TLE_RCS           = 37,    // Median RCS - diameter in centimeters (cm)
-      
+         XA_TLE_ORGSATNUM = 31,    // Original satellite number
+         XA_TLE_BTERM = 32,    // SP/SGP4-XP ballistic coefficient (m2/kg) 
+         XA_TLE_OBSTIME = 33,    // Time of last observation relative to epoch +/- fractional days
+         XA_TLE_EGR = 34,    // Last calculated error growth rate (km/day)
+         XA_TLE_EDR = 35,    // Last calculated energy dissipation rate (w/kg)
+         XA_TLE_VISMAG = 36,    // Median Vismag 
+         XA_TLE_RCS = 37,    // Median RCS - diameter in centimeters (cm)
+
          // CSV (or TLE-XP, ephemType=4)
-         XA_TLE_AGOMGP        = 38,    // Solar Radiation Pressure Coefficient GP (m2/kg)
-      
-         
+         XA_TLE_AGOMGP = 38,    // Solar Radiation Pressure Coefficient GP (m2/kg)
+
+
          // SP specific fields
-         XA_TLE_SP_BTERM      =  2,    // SP ballistic coefficient (m2/kg)
-         XA_TLE_SP_OGPARM     =  3,    // SP outgassing parameter (km/s2)
-         XA_TLE_SP_AGOM       =  4,    // SP Radiation Pressure Coefficient
-         
-         XA_TLE_SIZE          = 64;
-      
+         XA_TLE_SP_BTERM = 2,    // SP ballistic coefficient (m2/kg)
+         XA_TLE_SP_OGPARM = 3,    // SP outgassing parameter (km/s2)
+         XA_TLE_SP_AGOM = 4,    // SP Radiation Pressure Coefficient
+
+         XA_TLE_SIZE = 64;
+
       // Indexes of TLE text data in an array of chars
-      public static int  
-         XS_TLE_SECCLASS_1   =  0,    // Security classification of line 1 and line 2
-         XS_TLE_SATNAME_12   =  1,    // Satellite name
-         XS_TLE_OBJTYPE_11   = 13,    // Object Type (Payload, Rocket Body, Platform, Debris, Unknown) - csv only
-         
-         XS_TLE_SIZE         = 512;      
-         
+      public static int
+         XS_TLE_SECCLASS_1 = 0,    // Security classification of line 1 and line 2
+         XS_TLE_SATNAME_12 = 1,    // Satellite name
+         XS_TLE_OBJTYPE_11 = 13,    // Object Type (Payload, Rocket Body, Platform, Debris, Unknown) - csv only
+
+         XS_TLE_SIZE = 512;
+
       // TLE's text data fields - new convention (start index, string length)
-      public static int  
-         XS_TLE_SECCLASS_0_1  =  0,    // Security classification of line 1 and line 2
-         XS_TLE_SATNAME_1_12  =  1,    // Satellite name
-         XS_TLE_OBJTYPE_13_1  = 13,    // Object Type (Payload, Rocket Body, Platform, Debris, Unknown) - csv only
-         
-         XS_TLE_LENGTH        = 512;      
-      
+      public static int
+         XS_TLE_SECCLASS_0_1 = 0,    // Security classification of line 1 and line 2
+         XS_TLE_SATNAME_1_12 = 1,    // Satellite name
+         XS_TLE_OBJTYPE_13_1 = 13,    // Object Type (Payload, Rocket Body, Platform, Debris, Unknown) - csv only
+
+         XS_TLE_LENGTH = 512;
+
       // Indexes of different TLE file's formats
-      public static int  
-         XF_TLEFORM_ORG    =  0,    // Original TLE format
-         XF_TLEFORM_CSV    =  1;    // CSV format
-         
-         
+      public static int
+         XF_TLEFORM_ORG = 0,    // Original TLE format
+         XF_TLEFORM_CSV = 1;    // CSV format
+
+
    }
-// ========================= End of auto generated code ==========================
+   // ========================= End of auto generated code ==========================
 }

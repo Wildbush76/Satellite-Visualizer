@@ -31,7 +31,7 @@ namespace AFSPC.AstroStds.Utilities
 
 
       private static int GETSETSTRLEN = 512;
-      private static bool isInit = false;
+      private static bool isInit = true;
 
       // code to allow specification of AS library path at run time
       const uint LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 0x00001000;

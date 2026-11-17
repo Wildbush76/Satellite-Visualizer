@@ -1,8 +1,0 @@
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\Lib\AFSPC.AstroStds.Models.dll.config
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\Lib\AFSPC.AstroStds.Models.dll
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\Lib\AFSPC.AstroStds.Models.pdb
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsModels\obj\x64\Final\AstroStdsModels.csproj.AssemblyReference.cache
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsModels\obj\x64\Final\AstroStdsModels.csproj.CoreCompileInputs.cache
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsModels\obj\x64\Final\AstroStdsModels.csproj.CopyComplete
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsModels\obj\x64\Final\AFSPC.AstroStds.Models.dll
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsModels\obj\x64\Final\AFSPC.AstroStds.Models.pdb

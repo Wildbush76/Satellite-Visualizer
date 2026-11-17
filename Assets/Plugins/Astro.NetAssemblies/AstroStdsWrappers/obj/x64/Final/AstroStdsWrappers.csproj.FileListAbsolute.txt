@@ -1,8 +1,0 @@
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\Lib\AFSPC.AstroStds.Wrappers.dll.config
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\Lib\AFSPC.AstroStds.Wrappers.dll
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\Lib\AFSPC.AstroStds.Wrappers.pdb
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsWrappers\obj\x64\Final\AstroStdsWrappers.csproj.AssemblyReference.cache
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsWrappers\obj\x64\Final\AstroStdsWrappers.csproj.CoreCompileInputs.cache
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsWrappers\obj\x64\Final\AstroStdsWrappers.csproj.CopyComplete
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsWrappers\obj\x64\Final\AFSPC.AstroStds.Wrappers.dll
-C:\jenkins\workspace\Build-Astro.NetAssemblies\buildscripts\driverexamples\Astro.NetAssemblies\Astro.NetAssemblies\AstroStdsWrappers\obj\x64\Final\AFSPC.AstroStds.Wrappers.pdb
