@@ -33,14 +33,7 @@ namespace AFSPC.AstroStds.Utilities
       private static int GETSETSTRLEN = 512;
       private static bool isInit = true;
 
-      // code to allow specification of AS library path at run time
-      const uint LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 0x00001000;
 
-      [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-      static extern bool SetDefaultDllDirectories(uint DirectoryFlags);
-
-      [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-      static extern int AddDllDirectory(string NewDirectory);
 
       //// static constructor to set up the AS library path 
       //static Utility()
@@ -52,69 +45,9 @@ namespace AFSPC.AstroStds.Utilities
       {
          if (isInit) return;
          isInit = true;
-
-         // Indicate to search libraries in
-         // - application directory
-         // - paths set using AddDllDirectory or SetDllDirectory
-         // - %windows%\system32
-         SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
-
-         string currPathEnv = Environment.GetEnvironmentVariable("PATH");
-
-         // first use the set ASTROSTDDLLPATH
-         if (ASTROSTDDLLPATH != "" && Directory.Exists(ASTROSTDDLLPATH))
-         {
-            // Add the directory of the native dll
-            AddFolderToPath(ASTROSTDDLLPATH);
-            string absolute = Path.GetFullPath(ASTROSTDDLLPATH);
-            Environment.SetEnvironmentVariable("PATH", absolute + ";" + currPathEnv);
-         }
-         else // if the set ASTROSTDDLLPATH is empty, use PATH environment
-         {
-            if (currPathEnv != null)
-            {
-               string[] folders = currPathEnv.Split(';');
-
-               foreach (string s in folders)
-               {
-                  AddFolderToPath(s);
-               }
-
-               ASTROSTDDLLPATH = currPathEnv;
-               Environment.SetEnvironmentVariable("PATH", currPathEnv);
-            }
-            // if the set ASTROSTDDLLPATH doesn't exit and PATH environment is empty, use current folder
-            else
-            {
-               string CURRENT_FOLDER = "./";
-               AddFolderToPath(CURRENT_FOLDER);
-               ASTROSTDDLLPATH = CURRENT_FOLDER;
-               Environment.SetEnvironmentVariable("PATH", CURRENT_FOLDER);
-            }
-         }
       }
 
 
-
-      /// <summary>
-      ///  Specifies the path to the AS library - Be able to specify AS path at run time (need to call this first before loading AS library)
-      /// </summary>
-      /// <param name="asLibPath"></param>
-      public static bool SetASLibPath(string asLibPath)
-      {
-         ASTROSTDDLLPATH = asLibPath;
-         if (Directory.Exists(asLibPath))
-            // Add the directory of the native dll
-            AddDllDirectory(asLibPath);
-         else
-         {
-            return false;
-         }
-
-         Init();
-         return true;
-
-      }
 
 
 
@@ -839,19 +772,6 @@ namespace AFSPC.AstroStds.Utilities
          double dz = pos1[2] - pos2[2];
 
          return Math.Sqrt(dx * dx + dy * dy + dz * dz);
-      }
-
-      public static void AddFolderToPath(string s)
-      {
-         if (s.Contains("."))
-         {
-            string absolute = Path.GetFullPath(s);
-            AddDllDirectory(absolute);
-         }
-         else
-         {
-            AddDllDirectory(s);
-         }
       }
 
       public static double[] ComputeWVector(double incli, double node)

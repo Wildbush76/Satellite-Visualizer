@@ -17,7 +17,7 @@ namespace AFSPC.AstroStds.Wrappers
       static DllMainWrapper()
       {
          // Set AS library default path/LD_LIBRARY_PATH environment
-         Utilities.Utility.Init();
+         // Utilities.Utility.Init();
       }
 
 
@@ -27,7 +27,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// Initializes DllMain program (host of Astro Standards libraries) for use in any Astro Standards applications
       /// </summary>
       /// <returns>A handle to the global data set. You will pass this handle to other initialization functions within other DLLs in the API.</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern long DllMainInit();
 
 
@@ -36,7 +36,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// The returned string provides information about the version number, build date, and the platform. 
       /// </summary>
       /// <param name="infoStr">A string to hold the information about DllMain.dll. (out-Character[128])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void DllMainGetInfo(byte[] infoStr);
 
 
@@ -45,7 +45,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="dllMainFile">The name of the input file. (in-Character[512])</param>
       /// <returns>Returns zero indicating the input file has been loaded successfully. Other values indicate an error.</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int DllMainLoadFile(string dllMainFile);
 
 
@@ -58,7 +58,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="fileName">The name of the log file to use. (in-Character[512])</param>
       /// <returns>0 if the file was opened successfully. Other values indicate an error.</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int OpenLogFile(string fileName);
 
 
@@ -66,7 +66,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// Closes the currently open log file and reset the last logged error message to null. 
       /// Remember to close the log file before exiting the program.
       /// </summary>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void CloseLogFile();
 
 
@@ -77,7 +77,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// The message is limited to 128 characters. If the message is longer than this, it will be truncated.
       /// </summary>
       /// <param name="msgStr">A message to be written into the log file. (in-Character[128])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void LogMessage(string msgStr);
 
 
@@ -90,7 +90,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// If you call this function before you have called DllMainInit(), the function will return an invalid string. This could result in undefined behavior.
       /// </summary>
       /// <param name="lastErrMsg">A string that stores the last logged error message. The message will be placed in the string you pass to this function. (out-Character[128])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void GetLastErrMsg(byte[] lastErrMsg);
 
 
@@ -104,7 +104,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// This function provides a quick way to check whether all of the prerequisite DLLs have been loaded and initialized correctly. Improper initialization of the Standardized Astrodynamic Algorithms DLLs is one of the most common causes of program crashes.
       /// </summary>
       /// <param name="lastInfoMsg">A string that stores the last logged informational message. The message will be placed in the string you pass to this function. (out-Character[128])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void GetLastInfoMsg(byte[] lastInfoMsg);
 
 
@@ -113,7 +113,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// Returns a list of names of the Standardized Astrodynamic Algorithms DLLs that were initialized successfully.
       /// </summary>
       /// <param name="initDllNames">A string that stores names of the DLLs that were initialized successfully. (out-Character[512])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void GetInitDllNames(byte[] initDllNames);
 
 
@@ -142,7 +142,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// <param name="long2DOut">an output 2D-array of 64-bit integers - should return the same values as the input long2DIn (out-Long[2, 3])</param>
       /// <param name="real2DIn">an input 2D-array of 64-bit reals (2 rows, 3 columns) - for column-major order language, reverse the order (in-Double[2, 3])</param>
       /// <param name="real2DOut">an output 2D-array of 64-bit reals - should return the same values as the input real2DIn (out-Double[2, 3])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void TestInterface(char cIn, out char cOut, int intIn, out int intOut, long longIn, out long longOut, double realIn, out double realOut, string strIn, byte[] strOut, int[] int1DIn, int[] int1DOut, long[] long1DIn, long[] long1DOut, double[] real1DIn, double[] real1DOut, int[,] int2DIn, int[,] int2DOut, long[,] long2DIn, long[,] long2DOut, double[,] real2DIn, double[,] real2DOut);
 
 
@@ -160,7 +160,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// <param name="int2DInOut">Output should return Input + 1 (inout-Integer[2, 3])</param>
       /// <param name="long2DInOut">Output should return Input + 6 (inout-Long[2, 3])</param>
       /// <param name="real2DInOut">Output should return Input + 7.6 (inout-Double[2, 3])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void TestInterface2(out char cInOut, out int intInOut, out long longInOut, out double realInOut, byte[] strInOut, int[] int1DInOut, long[] long1DInOut, double[] real1DInOut, int[,] int2DInOut, long[,] long2DInOut, double[,] real2DInOut);
 
 
@@ -171,7 +171,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// <param name="unk1DOut">Unknown dimension should be length (3), unk1DOut should return same as unk1DIn * 4 (out-Integer[*])</param>
       /// <param name="unk2DIn">Unknown dimension should be length (2) (in-Integer[*, 3])</param>
       /// <param name="unk2DOut">Unknown dimension should be length (2), unk2DOut should return same as unk2DIn * 5 (out-Integer[*, 3])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void TestInterface3(int[] unk1DIn, int[] unk1DOut, int[,] unk2DIn, int[,] unk2DOut);
 
 
@@ -180,7 +180,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="arrSize">size of the xa_moc array - actual number of fields the user enters in an "AS_MOIC" input card (in-Integer)</param>
       /// <param name="xa_moic">The returning xa_moc array (out-Double[*])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void GetMOICData(int arrSize, double[] xa_moic);
 
 
@@ -191,7 +191,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="elset_keyMode">Desired elset key mode (see ELSET_KEYMODE_?) (in-Integer)</param>
       /// <returns>0 if the set is successful, non-0 if there is an error.</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int SetElsetKeyMode(int elset_keyMode);
 
 
@@ -199,7 +199,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// Gets current ELSET key mode
       /// </summary>
       /// <returns>Current elset key mode (see ELSET_KEYMODE_?)</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int GetElsetKeyMode();
 
 
@@ -209,7 +209,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="all_keyMode">Desired elset key mode (see ALL_KEYMODE_?) (in-Integer)</param>
       /// <returns>0 if the set is successful, non-0 if there is an error.</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int SetAllKeyMode(int all_keyMode);
 
 
@@ -217,7 +217,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// Gets current ALL (elsets/obs/sensors) key mode
       /// </summary>
       /// <returns>Current elset key mode (see ALL_KEYMODE_?)</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int GetAllKeyMode();
 
 
@@ -225,7 +225,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// Resets ALL (elsets/obs/sensors) key mode to its default value which then allows individual elsets/obs/sensors to use their own key mode settings.
       /// Also reset DUPLICATION key mode to its default value.
       /// </summary>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void ResetAllKeyMode();
 
 
@@ -234,7 +234,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="dupKeyMode">Desired duplication key mode (see DUPKEY_?) (in-Integer)</param>
       /// <returns>0 if the set is successful, non-0 if there is an error.</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int SetDupKeyMode(int dupKeyMode);
 
 
@@ -242,7 +242,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// Gets current DUPLICATION key mode
       /// </summary>
       /// <returns>Current duplication key mode (see DUPKEY_?)</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int GetDupKeyMode();
 
 
@@ -252,7 +252,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="errCode">Input error code (in-Integer)</param>
       /// <param name="errMsg">A string that stores the last logged error message. The message will be placed in the string you pass to this function. (out-Character[128])</param>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern void GetErrMsg(int errCode, byte[] errMsg);
 
 
@@ -263,7 +263,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// </summary>
       /// <param name="mode">Error message mode: 0= use GetLastErrMsg(), 1= use GetErrMsg() to retrieve appropriate error message (in-Integer)</param>
       /// <returns>0 if the set is successful, non-0 if there is an error.</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int SetErrMsgMode(int mode);
 
 
@@ -273,7 +273,7 @@ namespace AFSPC.AstroStds.Wrappers
       /// mode = 1: Each thread stores and retrieves its own error message via GetErrMsg(). Appropriate for multi-thread applications
       /// </summary>
       /// <returns>Error message mode: 0= use GetLastErrMsg(), 1= use GetErrMsg() to retrieve appropriate error message</returns>
-      [DllImport(DllMainDll, CallingConvention = CallingConvention.Cdecl)]
+      [DllImport(DllMainDll)]
       public static extern int GetErrMsgMode();
 
       // log message string length
