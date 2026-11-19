@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ng4aSuUhzDI=",
+  "success": true,
+  "projectFilePath": "/home/wildbush/Downloads/csOrbitTools/OrbitTools/Core/Core.csproj",
+  "expectedPackageFiles": [
+    "/home/wildbush/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/wildbush/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

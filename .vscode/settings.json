@@ -84,10 +84,9 @@
         "SBAS",
         "STARLINK"
     ],
-    "editor.codeActionsOnSave": [
-        "source.organizeImports"
-    ],
     "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         }

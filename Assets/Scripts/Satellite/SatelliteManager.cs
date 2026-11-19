@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using UnityEngine;
-using AFSPC.AstroStds.Wrappers;
 
 namespace Assets.Scripts.Satellite
 {
@@ -21,21 +18,6 @@ namespace Assets.Scripts.Satellite
 
         private void Awake()
         {
-            //ASTRO LIB TESTS
-
-            long satKey = TleWrapper.TleAddSatFrLines("1 90021U RELEAS14 00051.47568104 +.00000184 +00000+0 +00000-4 0 0814",
-                                              "2 90021   0.0222 182.4923 0000720  45.6036 131.8822  1.00271328 1199");
-
-
-
-
-            Debug.Log($"Sat key = {satKey}");
-
-            ///ASTRO LIB TESTS
-
-
-
-
 
 
             if (Instance != null && Instance != null)

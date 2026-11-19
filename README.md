@@ -28,7 +28,7 @@
 
 ## Sources
 * Satellite Icon - Icon by Read on [freeicons.io](https://freeicons.io/profile/1)
-* SGP4 Calculator - [one_sgp4](https://github.com/1manprojects/one_Sgp4)
+* SGP4/SDP4 Calculator - http://www.zeptomoby.com/satellites/
 
 ## Author
 - **[Henry Kirk](mailto:dal116849@utdallas.edu)** - [Github](https://github.com/Wildbush76) - Main Developer
