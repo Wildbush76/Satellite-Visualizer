@@ -272,6 +272,7 @@ MonoBehaviour:
     - line: '|   bundleVersion: 1.0'
     - line: '|   preloadedAssets:'
     - line: '|   - {fileID: 11400000, guid: c86fd50851209ce15a38412bcd579f6c, type: 2}'
+    - line: '|   - {fileID: 11400000, guid: 4906ea0e4a238666ba3d91fe8fd9d690, type: 2}'
     - line: '|   - {fileID: -348627342837204857, guid: 3dd11dcd12272e54f8a19d8224e35f53, type: 2}'
     - line: '|   - {fileID: 9030113687040111788, guid: 4b3de149e50ea0c4f8ad04c79b9f12ec, type: 2}'
     - line: '|   metroInputSource: 0'
@@ -1105,7 +1106,7 @@ MonoBehaviour:
         m_ConnectProfiler: 0
         m_BuildWithDeepProfilingSupport: 0
         m_BuildWithCodeCoverage: 0
-        m_AllowDebugging: 0
+        m_AllowDebugging: 1
         m_WaitForManagedDebugger: 0
         m_ManagedDebuggerFixedPort: 0
         m_ExplicitNullChecks: 0
@@ -1119,9 +1120,9 @@ MonoBehaviour:
         m_BuildSubtarget: 0
         m_BuildSystem: 1
         m_ExportAsGoogleAndroidProject: 0
-        m_DebugSymbolLevel: 1
+        m_DebugSymbolLevel: 4
         m_DebugSymbolFormat: 5
-        m_CurrentDeploymentTargetId: __builtin__target_default
+        m_CurrentDeploymentTargetId: 1WMHHA64JN2231
         m_BuildType: 1
         m_LinkTimeOptimization: 0
         m_BuildAppBundle: 0
