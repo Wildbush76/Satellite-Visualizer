@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using Assets.Scripts.Sgp4Management;
 using UnityEngine;
+using Zeptomoby.OrbitTools;
 
 namespace Assets.Scripts.Satellite
 {
@@ -30,29 +31,31 @@ namespace Assets.Scripts.Satellite
             XmlDocument ommDoc = new();
             ommDoc.Load(ommPath);
 
+            List<Omm> OrbitMeanMessages = Omm.Parse(ommDoc);
+            OrbitMeanMessages.ForEach(CreateSatellite);
         }
 
-        private void CreateSatellite()
+        private void CreateSatellite(Omm omm)
         {
             var newSatelliteObj = Instantiate(satellitePrefab, transform);
             var newSatellite = newSatelliteObj.GetComponent<Satellite>();
 
-            newSatellite.Initialize();
+            newSatellite.Initialize(omm);
             satellites.Add(newSatellite);
         }
 
         public void Update()
         {
-            UpdateSatellites();
+            UpdateSatellites(world.WorldTimeJulian, world.ViewerPositionECI);
         }
 
         void Start()
         {
             world = World.Instance;
         }
-        public void UpdateSatellites()
+        public void UpdateSatellites(Julian time, EciTime viewerLocation)
         {
-
+            satellites.ForEach((s) => s.UpdatePosition(time, viewerLocation));
         }
 
     }

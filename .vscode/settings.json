@@ -82,7 +82,8 @@
         "Mathf",
         "PERICENTER",
         "SBAS",
-        "STARLINK"
+        "STARLINK",
+        "Zeptomoby"
     ],
     "[csharp]": {
         "editor.defaultFormatter": "ms-dotnettools.csharp",
