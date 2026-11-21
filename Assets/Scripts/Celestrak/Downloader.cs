@@ -24,7 +24,7 @@ namespace Assets.Scripts.Celestrak
 
                 if (request.result == UnityWebRequest.Result.Success)
                     return true;
-                Debug.LogWarning($"Download Failed, Code => {request.responseCode}");
+                Debug.LogWarning($"Download Failed, Code => {request.responseCode}, Response = {request.result.ToString()}");
             }
 
             return false;
