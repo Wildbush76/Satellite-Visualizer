@@ -13,13 +13,11 @@ namespace Assets.Scripts.Satellite
         [SerializeField]
         private GameObject satelliteGroupPrefab;
 
-        private readonly Dictionary<SatelliteType, SatelliteGroup> satelliteGroups = new();
+        private readonly Dictionary<string, SatelliteConstellation> satelliteGroups = new();
 
 
         private void Awake()
         {
-
-
             if (Instance != null && Instance != null)
             {
                 Debug.LogWarning("More than instance of a satelliteManager found. Destroying extra");
@@ -31,22 +29,26 @@ namespace Assets.Scripts.Satellite
             DontDestroyOnLoad(gameObject);
         }
 
-        private void CreateGroup(string tlePath, SatelliteType type)
+        private void CreateGroup(SatelliteTypes type)
         {
             var obj = GameObject.Instantiate(satelliteGroupPrefab, transform);
-            SatelliteGroup group = obj.GetComponent<SatelliteGroup>();
-            group.Initialize(tlePath);
+            SatelliteConstellation group = obj.GetComponent<SatelliteConstellation>();
+            group.Initialize(type);
 
-            if (!satelliteGroups.TryAdd(type, group))
+            if (!satelliteGroups.TryAdd(type.CelestrakId, group))
             {
                 Debug.LogWarning(string.Format("A satellite group with the type %s already exists!", type.ToString()), obj);
             }
         }
+
+        private void LoadGroups()
+        {
+            SatelliteTypes.ALL_GROUPS.ForEach(CreateGroup);
+        }
+
         void Start()
         {
-            //TESTING
-            CreateGroup(Path.Combine(Application.streamingAssetsPath, "galileo.xml"), SatelliteType.GNSS);
-            //TESTING
+            LoadGroups();
         }
 
 

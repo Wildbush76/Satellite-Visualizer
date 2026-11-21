@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Scripts.Sgp4Management;
+using UnityEngine.Android;
 using Zeptomoby.OrbitTools;
 namespace Assets.Scripts.Satellite
 {
@@ -11,6 +11,16 @@ namespace Assets.Scripts.Satellite
         private Transform focus;//the point all the satellites look at
         private SpriteRenderer sprite;
         private Orbit orbit;
+        private Color color = Color.gray;
+        public Color Color
+        {
+            get => color; set
+            {
+                if (sprite != null)
+                    sprite.color = value;
+                color = value;
+            }
+        }
 
 
         public void Initialize(Omm omm)
@@ -22,7 +32,7 @@ namespace Assets.Scripts.Satellite
         {
             focus = transform.parent;
             sprite = GetComponent<SpriteRenderer>();
-            sprite.color = Color.orange;//TODO implement color
+            sprite.color = color;
         }
 
         public void UpdatePosition(Julian time, EciTime viewerLocation)

@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Xml;
-using Assets.Scripts.Sgp4Management;
+using Assets.Scripts.Celestrak;
 using UnityEngine;
 using Zeptomoby.OrbitTools;
 
 namespace Assets.Scripts.Satellite
 {
-    public class SatelliteGroup : MonoBehaviour
+    public class SatelliteConstellation : MonoBehaviour
     {
         private readonly List<Satellite> satellites = new();
 
         [SerializeField]
         private GameObject satellitePrefab;
         private World world;
+        private SatelliteTypes type;
 
         public bool Active
         {
@@ -26,13 +28,40 @@ namespace Assets.Scripts.Satellite
 
         private bool active;
 
-        public void Initialize(string ommPath)
+        private void LoadOmmFile(string file)
         {
             XmlDocument ommDoc = new();
-            ommDoc.Load(ommPath);
+            ommDoc.Load(file);
 
             List<Omm> OrbitMeanMessages = Omm.Parse(ommDoc);
             OrbitMeanMessages.ForEach(CreateSatellite);
+        }
+
+        public void Initialize(SatelliteTypes group)
+        {
+            type = group;
+            if (File.Exists(group.OmmFile))
+            {
+                LoadOmmFile(group.OmmFile);
+            }
+            else
+            {
+                _ = DownloadThenLoad();
+            }
+
+        }
+
+        private async Awaitable DownloadThenLoad()
+        {
+            Debug.Log("Downloading file from celestrak");
+            bool success = await Downloader.Download(type.CelestrakQuery, type.OmmFile);
+            if (success)
+            {
+                Debug.Log("Download successful");
+                LoadOmmFile(type.OmmFile);
+            }
+            else
+                Debug.LogError("Failed to download file");
         }
 
         private void CreateSatellite(Omm omm)
@@ -41,6 +70,8 @@ namespace Assets.Scripts.Satellite
             var newSatellite = newSatelliteObj.GetComponent<Satellite>();
 
             newSatellite.Initialize(omm);
+            newSatellite.Color = type.Color;
+
             satellites.Add(newSatellite);
         }
 

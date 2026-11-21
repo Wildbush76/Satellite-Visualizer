@@ -6,7 +6,7 @@ using Zeptomoby.OrbitTools;
 using UnityEngine;
 
 
-namespace Assets.Scripts.Sgp4Management
+namespace Assets.Scripts.Satellite
 {
     public class Omm : OrbitalElements
     {
