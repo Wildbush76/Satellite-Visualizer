@@ -67,7 +67,7 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Satellite Visualizer.slnx",
+    "dotnet.defaultSolution": "Satellite-Visualizer.slnx",
     "cSpell.words": [
         "Behaviour",
         "BEIDOU",
@@ -82,12 +82,12 @@
         "Mathf",
         "PERICENTER",
         "SBAS",
-        "STARLINK"
-    ],
-    "editor.codeActionsOnSave": [
-        "source.organizeImports"
+        "STARLINK",
+        "Zeptomoby"
     ],
     "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         }

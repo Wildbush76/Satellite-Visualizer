@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using UnityEngine;
-using AFSPC.AstroStds.Wrappers;
 
 namespace Assets.Scripts.Satellite
 {
@@ -16,28 +13,11 @@ namespace Assets.Scripts.Satellite
         [SerializeField]
         private GameObject satelliteGroupPrefab;
 
-        private readonly Dictionary<SatelliteType, SatelliteGroup> satelliteGroups = new();
+        private readonly Dictionary<string, SatelliteConstellation> satelliteGroups = new();
 
 
         private void Awake()
         {
-            //ASTRO LIB TESTS
-
-            long satKey = TleWrapper.TleAddSatFrLines("1 90021U RELEAS14 00051.47568104 +.00000184 +00000+0 +00000-4 0 0814",
-                                              "2 90021   0.0222 182.4923 0000720  45.6036 131.8822  1.00271328 1199");
-
-
-
-
-            Debug.Log($"Sat key = {satKey}");
-
-            ///ASTRO LIB TESTS
-
-
-
-
-
-
             if (Instance != null && Instance != null)
             {
                 Debug.LogWarning("More than instance of a satelliteManager found. Destroying extra");
@@ -49,22 +29,26 @@ namespace Assets.Scripts.Satellite
             DontDestroyOnLoad(gameObject);
         }
 
-        private void CreateGroup(string tlePath, SatelliteType type)
+        private void CreateGroup(SatelliteTypes type)
         {
             var obj = GameObject.Instantiate(satelliteGroupPrefab, transform);
-            SatelliteGroup group = obj.GetComponent<SatelliteGroup>();
-            group.Initialize(tlePath);
+            SatelliteConstellation group = obj.GetComponent<SatelliteConstellation>();
+            group.Initialize(type);
 
-            if (!satelliteGroups.TryAdd(type, group))
+            if (!satelliteGroups.TryAdd(type.CelestrakId, group))
             {
                 Debug.LogWarning(string.Format("A satellite group with the type %s already exists!", type.ToString()), obj);
             }
         }
+
+        private void LoadGroups()
+        {
+            SatelliteTypes.ALL_GROUPS.ForEach(CreateGroup);
+        }
+
         void Start()
         {
-            //TESTING
-            CreateGroup(Path.Combine(Application.streamingAssetsPath, "galileo.xml"), SatelliteType.GNSS);
-            //TESTING
+            LoadGroups();
         }
 
 

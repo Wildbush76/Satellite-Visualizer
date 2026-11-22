@@ -3,6 +3,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Android;
+using Zeptomoby.OrbitTools;
 
 namespace Assets.Scripts
 {
@@ -10,8 +11,13 @@ namespace Assets.Scripts
     {
         public static World Instance { get; private set; }
 
-
-
+        public DateTime WorldTime { get; private set; } = DateTime.UtcNow;
+        public Julian WorldTimeJulian { get => new Julian(WorldTime); }
+        public Site Site { get; private set; } = new Site(0, 0, 0);
+        public EciTime ViewerPositionECI
+        {
+            get => Site.PositionEci(WorldTimeJulian);
+        }
 
         private void Awake()
         {
@@ -29,7 +35,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
-
+            WorldTime = WorldTime.AddHours(Time.deltaTime);
         }
 
         private void InitGPS()
