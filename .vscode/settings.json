@@ -67,7 +67,7 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Satellite-Visualizer.slnx",
+    "dotnet.defaultSolution": "Satellite Visualizer.slnx",
     "cSpell.words": [
         "Behaviour",
         "BEIDOU",
@@ -83,6 +83,7 @@
         "PERICENTER",
         "SBAS",
         "STARLINK",
+        "UGUI",
         "Zeptomoby"
     ],
     "[csharp]": {

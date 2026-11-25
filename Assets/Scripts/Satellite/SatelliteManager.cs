@@ -7,13 +7,13 @@ namespace Assets.Scripts.Satellite
 
     public class SatelliteManager : MonoBehaviour
     {
-        public SatelliteManager Instance { get; private set; }
+        public static SatelliteManager Instance { get; private set; }
 
 
         [SerializeField]
         private GameObject satelliteGroupPrefab;
 
-        private readonly Dictionary<string, SatelliteConstellation> satelliteGroups = new();
+        public readonly Dictionary<string, SatelliteConstellation> satelliteGroups = new();
 
 
         private void Awake()
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Satellite
             DontDestroyOnLoad(gameObject);
         }
 
-        private void CreateGroup(SatelliteTypes type)
+        private void CreateGroup(SatelliteGroupConfig type)
         {
             var obj = GameObject.Instantiate(satelliteGroupPrefab, transform);
             SatelliteConstellation group = obj.GetComponent<SatelliteConstellation>();
@@ -43,7 +43,10 @@ namespace Assets.Scripts.Satellite
 
         private void LoadGroups()
         {
-            SatelliteTypes.ALL_GROUPS.ForEach(CreateGroup);
+            foreach (var groupList in SatelliteGroupConfig.ALL_GROUPS.Values)
+            {
+                groupList.ForEach(CreateGroup);
+            }
         }
 
         void Start()

@@ -3,18 +3,18 @@
 ## Feature Plan
 ### Core
 ***Features that are universal to all version of the app***
- - [ ] Visual live satellite position in the sky from the perspective of an observer on the ground
+ - [x] Visual live satellite position in the sky from the perspective of an observer on the ground
  - [ ] See information about specific satellites (Name, Catalog number)
  - [ ] Create groups of satellites
-    - [ ] Have starting groups of satellites be GNSS (GPS, Galileo, BeiDou and GLONASS) and Starlink
-    - [ ] Each group has a unique color coding (Maybe color coding for subgroups too)
-    - [ ] Be able to filter which groups are being show
+    - [x] Have starting groups of satellites be GNSS (GPS, Galileo, BeiDou and GLONASS) and Starlink
+    - [x] Each group has a unique color coding (Maybe color coding for subgroups too)
+    - [x] Be able to filter which groups are being show
     - [ ] If connected to the internet fetch up to date TLEs for each group (if outdated by some configurable threshold)
 
  - [ ] UI
-    - [ ] Controls for filtering what satellites are visible
+    - [x] Controls for filtering what satellites are visible
     - [ ] Show statistics on what satellites are visible (above the horizon)
-    - [ ] Has a key for the color coding of satellites
+    - [x] Has a key for the color coding of satellites
 
 ### Quest 2
 ***Features Specific to the Quest 2 version***

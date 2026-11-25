@@ -17,7 +17,7 @@ namespace Assets.Scripts.Satellite
         [SerializeField]
         private GameObject satellitePrefab;
         private World world;
-        private SatelliteTypes type;
+        private SatelliteGroupConfig type;
 
         public bool Active
         {
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Satellite
             OrbitMeanMessages.ForEach(CreateSatellite);
         }
 
-        public void Initialize(SatelliteTypes group)
+        public void Initialize(SatelliteGroupConfig group)
         {
             type = group;
             if (File.Exists(group.OmmFile))
